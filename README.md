@@ -21,4 +21,4 @@ Claudia Carrasco
 # Integrantes del Grupo
 
 - **Thiago Pollio** - Legajo 4267 - mail: thiagopollio@yahoo.com.ar - Github: Thiago-Pollio
-- **Nadia Carrasco** - Legajo 4236 - mail: nadiacarrasco83.nc@gmail.com . Github Nadia-Carrasco 
+- **Nadia Carrasco** - Legajo 4236 - mail: nadiacarrasco83.nc@gmail.com - Github: Nadia-Carrasco 
