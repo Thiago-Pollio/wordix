@@ -29,11 +29,38 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
+//agregue esta funcion:
+function cargarPartidas ($palabraWordix, $nombreUsuario, $nroIntento, $puntaje){
+    
+    $coleccionPartidas = [
+        "palabraWordix" => $palabraWordix, 
+        "jugador" => $nombreUsuario,
+        "intentos" => $nroIntento,
+        "puntaje" => $puntaje
+    ];
+    return ($coleccionPartidas);
+}
 
-/* ... COMPLETAR ... */
+function seleccionarOpcion(){
+    $menu= "Menú de opciones: \n" .
+    "1) Jugar al Wordix con una palabra elegida \n".
+    "2) Jugar al Wordix con una palabra aleatoria \n" .
+    "3) Mostrar una partida \n".
+    "4) Mostrar la primer partida ganadora \n" . 
+    "5) Mostrar resumen de Jugador \n" . 
+    "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n" . 
+    "7) Agregar una palabra de 5 letras a Wordix \n" . 
+    "8) Salir \n"; 
+    echo $menu;
+    $numOpcion=trim(fgets(STDIN));
+    while ($numOpcion<1 || $numOpcion>8){
+        echo $menu;
+        $numOpcion=trim(fgets(STDIN));
+    }
+    return $numOpcion;
+}
 
-
-
+seleccionarOpcion();
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
