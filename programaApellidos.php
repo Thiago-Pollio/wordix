@@ -29,7 +29,10 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
-//agregue esta funcion:
+/**
+ * Obtiene una coleccion de partidas
+ * @return array 
+ */
 function cargarPartidas ($palabraWordix, $nombreUsuario, $nroIntento, $puntaje){
     
     $coleccionPartidas = [
@@ -40,7 +43,10 @@ function cargarPartidas ($palabraWordix, $nombreUsuario, $nroIntento, $puntaje){
     ];
     return ($coleccionPartidas);
 }
-
+/** 
+ * Obtiene la opcion elegida del Menú    
+ * @return int $numOpcion 
+ */
 function seleccionarOpcion(){
     $menu= "Menú de opciones: \n" .
     "1) Jugar al Wordix con una palabra elegida \n".
@@ -60,7 +66,6 @@ function seleccionarOpcion(){
     return $numOpcion;
 }
 
-seleccionarOpcion();
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
