@@ -142,7 +142,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *Verifica que la palabra tenga 5 letras
+ * @return string
  */
 function leerPalabra5Letras()
 {
