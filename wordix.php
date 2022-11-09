@@ -321,29 +321,15 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * Obtiene el puntaje del intento 
- * @param int $nroIntento
- * @return int $puntaje
- */
-function obtenerPuntajeWordix($nroIntento, $palabraIntento)
+* ****COMPLETAR***** documentación de la intefaz
+*/
+function  obtenerPuntajeWordix ()   /* ****COMPLETAR***** parámetros formales necesarios */
 {
-    $puntajePorIntento=0;
-    if ($nroIntento=1){
-        $puntajePorIntento=6;
-    }elseif($nroIntento=2){
-        $puntajePorIntento=5;
-    }elseif($nroIntento=3){
-        $puntajePorIntento=4;
-        
-    }elseif($nroIntento=4){
-        $puntajePorIntento=3;
-    }elseif($nroIntento=5){
-        $puntajePorIntento=2;
-    }elseif($nroIntento=6){
-        $puntajePorIntento=1;
-    }
-    return 0;
+
+    /* ****COMPLETAR***** cuerpo de la funcion*/
+    return  0 ;
 }
+
 
 /**
  * Dada una palabra para adivinar, juega una partida de wordix intentando que el usuario adivine la palabra.
