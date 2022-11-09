@@ -321,12 +321,27 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * Obtiene el puntaje del intento 
+ * @param int $nroIntento
+ * @return int $puntaje
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($nroIntento, $palabraIntento)
 {
-
-    /* ****COMPLETAR***** cuerpo de la función*/
+    $puntajePorIntento=0;
+    if ($nroIntento=1){
+        $puntajePorIntento=6;
+    }elseif($nroIntento=2){
+        $puntajePorIntento=5;
+    }elseif($nroIntento=3){
+        $puntajePorIntento=4;
+        
+    }elseif($nroIntento=4){
+        $puntajePorIntento=3;
+    }elseif($nroIntento=5){
+        $puntajePorIntento=2;
+    }elseif($nroIntento=6){
+        $puntajePorIntento=1;
+    }
     return 0;
 }
 
