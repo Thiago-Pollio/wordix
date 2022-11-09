@@ -70,6 +70,28 @@ function seleccionarOpcion(){
     return $numOpcion;
 }
 
+/**
+ * Muestra los datos de partida
+ * @param int $numero
+ */
+function datosPartida($numero){
+    echo "Ingrese un múmero de partida: ";
+    $numero = trim(fgets(STDIN));
+    if ($numero >= $min && $numero <= $max) {
+        echo "Partida WORDIX". $numero.": palabra". $palabraWordix;
+        echo "Jugador: ". $nombreUsuario; 
+        echo "Puntaje: ". $puntaje;
+        if ($puntaje == 0) {
+            echo "Intento: No adivinó la palabra.";
+        } elseif ($puntaje > 0) {
+            echo "Intento: Adivinó la palabra en ". $nroIntento."intentos";
+        }
+    } else {
+        echo "Ingrese un número válido: ";
+        $numero = trim(fgets(STDIN));
+    }
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
