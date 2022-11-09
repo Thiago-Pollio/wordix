@@ -321,15 +321,14 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
-* ****COMPLETAR***** documentación de la intefaz
-*/
-function  obtenerPuntajeWordix ()   /* ****COMPLETAR***** parámetros formales necesarios */
+ * ***COMPLETAR***
+ */
+function obtenerPuntajeWordix() //agregar parametros formales
 {
-
-    /* ****COMPLETAR***** cuerpo de la funcion*/
-    return  0 ;
+   
+    /**COMPLETAR cuerpo */
+    return 0;
 }
-
 
 /**
  * Dada una palabra para adivinar, juega una partida de wordix intentando que el usuario adivine la palabra.
