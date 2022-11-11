@@ -92,6 +92,35 @@ function datosPartida($numero){
     }
 }
 
+/**
+ * Muestra la primera partida ganada de un jugador
+ * @param array $coleccionPartidas
+ * @param string $nombre
+ * @return int
+ */
+function primeraPartidaGanada($coleccionPartidas, $nombre){
+    //int $indice
+    $n = count($coleccionPartidas); 
+    $i = 0;
+    $encontrado = false; 
+    while ($i < $n && $encontrado == false) {
+        if ($nombre == "jugador") {
+          if ("puntaje" > 0 ) {
+            $encontrado = true;
+            }else {
+            $encontrado = false;
+            }
+        }
+        $i = $i + 1;
+    }
+    if ($encontrado == true) {
+        $indice = $coleccionPartidas[$i];
+    } else {
+        $indice = -1;
+    }
+    return ($indice);
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
