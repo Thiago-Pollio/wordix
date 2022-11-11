@@ -345,7 +345,7 @@ function obtenerPuntajeWordix($numIntento, $palabraIntento)
     }elseif($numIntento==6){
         $puntosPorIntento=1;
     }
-    $abc= [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L","M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"];
+    $abc= [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L","M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
    
 
     for($i=0; $i<strlen($palabraIntento); $i++){
