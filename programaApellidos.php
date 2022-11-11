@@ -75,7 +75,7 @@ function seleccionarOpcion(){
  * @param int $numero
  */
 function datosPartida($numero){
-    echo "Ingrese un múmero de partida: ";
+    echo "Ingrese un número de partida: ";
     $numero = trim(fgets(STDIN));
     if ($numero >= $min && $numero <= $max) {
         echo "Partida WORDIX". $numero.": palabra". $palabraWordix;

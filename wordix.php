@@ -322,13 +322,45 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ***COMPLETAR***
+ * Obtiene el puntaje a partir del numero de intento y la palabra Wordix 
+ * @param int $numIntento
+ * @param string $palabraIntento
+ * @return int $total
  */
-function obtenerPuntajeWordix() //agregar parametros formales
+function obtenerPuntajeWordix($numIntento, $palabraIntento) 
 {
+    $puntosPorIntento=0;
+    $puntosPorLetra=0;
+    $total=0;
+    if ($numIntento==1){
+        $puntosPorIntento=6;
+    }elseif($numIntento==2){
+        $puntosPorIntento=5;
+    }elseif($numIntento==3){
+        $puntosPorIntento=4;
+    }elseif($numIntento==4){
+        $puntosPorIntento=3;
+    }elseif($numIntento==5){
+        $puntosPorIntento=2;
+    }elseif($numIntento==6){
+        $puntosPorIntento=1;
+    }
+    $abc= [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L","M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "W", "X", "Y", "Z"];
    
-    /**COMPLETAR cuerpo */
-    return 0;
+
+    for($i=0; $i<strlen($palabraIntento); $i++){
+     $letra=$palabraIntento[$i];
+     $posicion= array_search($letra, $abc);
+        if($posicion==0 || $posicion==4 || $posicion==8 || $posicion==15 || $posicion==21){
+            $puntosPorLetra=$puntosPorLetra+1;
+        }elseif($posicion>=1 && $posicion <=3 || $posicion>=5 && $posicion<=7 || $posicion>=9 && $posicion<=12){
+            $puntosPorLetra=$puntosPorLetra+2;
+        }elseif($posicion==13 || $posicion==14 || $posicion>=16 && $posicion<=20 || $posicion>=22){
+            $puntosPorLetra=$puntosPorLetra+3;
+        }
+    } 
+    $total=$puntosPorIntento + $puntosPorLetra;
+    return $total;
 }
 
 /**
