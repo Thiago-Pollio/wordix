@@ -6,6 +6,7 @@ include_once("wordix.php");
 /**************************************/
 
 /* Carrasco, Nadia. 4236. TUDW. nadiacarrasco83.nc@gmail.com . Nadia-Carrasco */
+/* Salgado, Sol. 4266. TUDW. sol.g.salgado@gmail.com. solsalgado */
 /* ... COMPLETAR ... */
 
 
@@ -107,18 +108,19 @@ function datosPartida($coleccionDePartidas){
 
 /**
  * Muestra la primera partida ganada de un jugador
- * @param array $coleccionPartidas
+ * @param array $partidas
  * @param string $nombre
  * @return int
  */
-function primeraPartidaGanada($coleccionPartidas, $nombre){
+function primeraPartidaGanada($partidas, $nombre){
     //int $indice
-    $n = count($coleccionPartidas); 
+    $partidas = cargarPartidas();
+    $n = count($partidas); 
     $i = 0;
     $encontrado = false; 
     while ($i < $n && $encontrado == false) {
-        if ($nombre == "jugador") {
-          if ("puntaje" > 0 ) {
+        if ($nombre == $partidas[$i]["jugador"]) {
+          if ($partidas[$i]["puntaje"] > 0 ) {
             $encontrado = true;
             }else {
             $encontrado = false;
@@ -127,12 +129,13 @@ function primeraPartidaGanada($coleccionPartidas, $nombre){
         $i = $i + 1;
     }
     if ($encontrado == true) {
-        $indice = $coleccionPartidas[$i];
+        $indice = $partidas[$i];
     } else {
         $indice = -1;
     }
     return ($indice);
 }
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
