@@ -72,25 +72,38 @@ function seleccionarOpcion(){
 
 /**
  * Muestra los datos de partida
- * @param int $numero
+ * @param array $coleccionDePartidas
  */
-function datosPartida($numero){
-    echo "Ingrese un número de partida: ";
-    $numero = trim(fgets(STDIN));
-    if ($numero >= $min && $numero <= $max) {
-        echo "Partida WORDIX". $numero.": palabra". $palabraWordix;
-        echo "Jugador: ". $nombreUsuario; 
-        echo "Puntaje: ". $puntaje;
-        if ($puntaje == 0) {
-            echo "Intento: No adivinó la palabra.";
-        } elseif ($puntaje > 0) {
-            echo "Intento: Adivinó la palabra en ". $nroIntento."intentos";
-        }
-    } else {
-        echo "Ingrese un número válido: ";
-        $numero = trim(fgets(STDIN));
-    }
-}
+function datosPartida($coleccionDePartidas){
+    //int $numero
+     $coleccionDePartidas = cargarPartidas();
+     $n = count($coleccionDePartidas);
+     $i = 0;
+     $num = false;
+     echo "Ingrese un número: ";
+     $numero = trim(fgets(STDIN));
+     while ($i < $n && $num == false) {
+         if ($numero < $n) {
+             $num = true;
+         } else {
+             $num = false;
+         }
+         $i = $i + 1;
+     }
+     if ($num == true) {
+         echo "Partida WORDIX ". $coleccionDePartidas[$numero].": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
+         echo "Jugador: ". $coleccionDePartidas[$numero]["jugador"]. "\n";
+         echo "Puntaje: ". $coleccionDePartidas[$numero]["puntaje"]. "\n";
+         if ($coleccionDePartidas[$numero]["puntaje"] == 0) {
+             echo "Intento: No adivinó la palabra.";
+         } elseif ($coleccionDePartidas[$numero]["puntaje"] > 0) {
+             echo "Intento: Adivinó la palabra en ". $coleccionDePartidas[$numero]["intentos"]." intentos";
+         }
+     } else {
+         echo "Ingrese un numero válido: ";
+         $numero = trim(fgets(STDIN));
+     }
+ }
 
 /**
  * Muestra la primera partida ganada de un jugador
