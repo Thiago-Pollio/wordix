@@ -92,9 +92,9 @@ function datosPartida($coleccionDePartidas){
              $num = false;
          }
          $i = $i + 1;
-     }
+     
      if ($num == true) {
-         echo "Partida WORDIX ". $coleccionDePartidas[$numero].": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
+         echo "Partida WORDIX ". $numero.": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
          echo "Jugador: ". $coleccionDePartidas[$numero]["jugador"]. "\n";
          echo "Puntaje: ". $coleccionDePartidas[$numero]["puntaje"]. "\n";
          if ($coleccionDePartidas[$numero]["puntaje"] == 0) {
@@ -105,7 +105,8 @@ function datosPartida($coleccionDePartidas){
      } else {
          echo "Ingrese un numero válido: ";
          $numero = trim(fgets(STDIN));
-     }
+     } 
+  }
  }
 
 /**
