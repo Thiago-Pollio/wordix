@@ -37,7 +37,7 @@ function cargarColeccionPalabras()
 function cargarPartidas (){
     
     $coleccionPartidas[0] = ["palabraWordix" => "MUJER", "jugador" => "pedro", "intentos" => 0, "puntaje" => 0];
-    $coleccionPartidas[1] = ["palabraWordix" => "QUESO", "jugador" => "roberto", "intentos" => 3, "puntaje" => 4];
+    $coleccionPartidas[1] = ["palabraWordix" => "QUESO", "jugador" => "roberto", "intentos" => 3, "puntaje" => 13];
     $coleccionPartidas[2] = ["palabraWordix" => "FUEGO", "jugador" => "mariana", "intentos" => 2, "puntaje" => 12];
     $coleccionPartidas[3] = ["palabraWordix" => "CASAS", "jugador" => "lucas", "intentos" => 6, "puntaje" => 0];
     $coleccionPartidas[4] = ["palabraWordix" => "RASGO", "jugador" => "paola", "intentos" => 1, "puntaje" => 16];
@@ -63,9 +63,11 @@ function seleccionarOpcion(){
     "7) Agregar una palabra de 5 letras a Wordix \n" . 
     "8) Salir \n"; 
     echo $menu;
+    echo "Ingrese una opcion: ";
     $numOpcion=trim(fgets(STDIN));
     while ($numOpcion<1 || $numOpcion>8){
         echo $menu;
+        echo "Ingrese una opcion: ";
         $numOpcion=trim(fgets(STDIN));
     }
     return $numOpcion;
@@ -148,22 +150,30 @@ function primeraPartidaGanada($partidas, $nombre){
 
 
 //Proceso:
+cargarPartidas();
+cargarColeccionPalabras();
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
 
 
-/*
+$num= seleccionarOpcion();
 do {
-    $opcion = ...;
+    
+    $opcion = $num;
 
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
-
+            echo "Ingrese Nombre de Usuario: ";
+            $nombreJugador=trim(fgets(STDIN));
+            echo "Ingrese un Número de Palabra: ";
+            $numPalabra=trim(fgets(STDIN));
+            $palabraElegida=cargarColeccionPalabras($numPalabra);
+            //seguir completando 
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
@@ -173,8 +183,18 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
-        
-            //...
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
+
