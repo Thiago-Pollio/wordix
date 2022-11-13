@@ -147,11 +147,11 @@ function primeraPartidaGanada($partidas, $nombre){
 
 
 //Inicialización de variables:
-
+$partidas=cargarPartidas();
+$palabras=cargarColeccionPalabras();
+$num= seleccionarOpcion();
 
 //Proceso:
-cargarPartidas();
-cargarColeccionPalabras();
 
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -159,8 +159,6 @@ cargarColeccionPalabras();
 //imprimirResultado($partida);
 
 
-
-$num= seleccionarOpcion();
 do {
     
     $opcion = $num;
@@ -180,8 +178,7 @@ do {
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            datosPartida($partidas);
             break;
         case 4:
 
