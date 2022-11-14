@@ -8,7 +8,6 @@ include_once("wordix.php");
 /* Carrasco, Nadia. 4236. TUDW. nadiacarrasco83.nc@gmail.com . Nadia-Carrasco */
 /* Salgado, Sol. 4266. TUDW. sol.g.salgado@gmail.com. solsalgado */
 /* Pollio, Thiago. 4267. TUDW. thiagopollio@yahoo.com.ar. Thiago-Pollio */
-/* ... COMPLETAR ... */
 
 
 
@@ -76,7 +75,7 @@ function seleccionarOpcion(){
 
 //Invoca a la funcion que solicita un numero entre un rango de valores
 
-$numeroValido = solicitarNumeroEntre();
+//$numeroValido = solicitarNumeroEntre();
 
 
 /**
@@ -118,18 +117,18 @@ function datosPartida($coleccionDePartidas){
 
 
 //Invoca a la funcion que verifica si una palabra es de 5 letras
-$validarPalabra = leerPalabra5Letras();
+//$validarPalabra = leerPalabra5Letras();
 
 /**
  *  Agrega una palabra a la coleccion de palabras
  *  @param array $coleccionPalabras
  *  @param string $palabra
+ *  @return array 
  */
 
 function agregarPalabra ($coleccionPalabras, $palabra) {
 
-    $llamarFuncion = cargarColeccionPalabras();
-    $n = count($llamarFuncion);
+    $n = count($coleccionPalabras);
     $i = 0;
     $palabraRepetida = false;
 
@@ -138,25 +137,23 @@ function agregarPalabra ($coleccionPalabras, $palabra) {
 
             echo "Palabra ya ingresada. Ingrese una nueva palabra: ";
             $palabra = trim(fgets(STDIN));
-            $palabra  = strtoupper($palabra);
-            while ((strlen($palabra) != 5) || !($palabra)) {
-                echo "Debe ingresar una palabra de 5 letras:";
-                $palabra = strtoupper(trim(fgets(STDIN)));
-            }
-            $i = 0;
-
-        } else {
-            $i = $i + 1;
+            $palabra=leerPalabra5Letras($palabra);
+            $i=0;
+        }else{
+            $i=$i+1;
         }
-         if ($i >= $n || $palabraRepetida == true){
-        $llamarFuncion []= $palabra;
+
+        if ($i >= $n || $palabraRepetida == true){
+        $coleccionPalabras []= $palabra;
     }
     }
     
-    print_r($llamarFuncion);
+    return print_r($coleccionPalabras);
  }
 
-
+ $palabras=cargarColeccionPalabras();
+ $palabraNueva=leerPalabra5Letras();
+ agregarPalabra($palabras, $palabraNueva);
 
 
 
@@ -227,17 +224,19 @@ function solicitarJugador (){
 
 
 //Inicialización de variables:
+
+/*
 $partidas=cargarPartidas();
 $palabras=cargarColeccionPalabras();
 $num= seleccionarOpcion();
-
+*/
 //Proceso:
 
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
-
+/*
 
 do {
     
@@ -270,8 +269,11 @@ do {
 
             break;
         case 7:
+            $palabraNueva=leerPalabra5Letras();
+            agregarPalabra($palabras, $palabraNueva);
 
             break;
     }
 } while ($opcion != 8);
 
+*/
