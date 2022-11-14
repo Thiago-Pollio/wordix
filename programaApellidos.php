@@ -74,25 +74,9 @@ function seleccionarOpcion(){
     return $numOpcion;
 }
 
+//Invoca a la funcion que solicita un numero entre un rango de valores
 
-/**
- * Solicita al usuario un numero valido entre un rango de valores
- * @param int $min
- * @param int $max
- * @return int
- */
-
-function solicitarNumeroEntre($min, $max)
-{
-    //int $numero
-    $numero = trim(fgets(STDIN));
-    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
-        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
-        $numero = trim(fgets(STDIN));
-    }
-    return $numero;
-}
-
+$numeroValido = solicitarNumeroEntre();
 
 
 /**
@@ -133,23 +117,8 @@ function datosPartida($coleccionDePartidas){
 
 
 
-/**
- *  Verifica si una palabra es de 5 letras
- *  @return string
- */
-function leerPalabra5Letras()
-{
-    //string $palabra
-    echo "Ingrese una palabra de 5 letras: ";
-    $palabra = trim(fgets(STDIN));
-    $palabra  = strtoupper($palabra);
-
-    while ((strlen($palabra) != 5) || !($palabra)) {
-        echo "Debe ingresar una palabra de 5 letras:";
-        $palabra = strtoupper(trim(fgets(STDIN)));
-    }
-    return $palabra;
-}
+//Invoca a la funcion que verifica si una palabra es de 5 letras
+$validarPalabra = leerPalabra5Letras();
 
 /**
  *  Agrega una palabra a la coleccion de palabras
