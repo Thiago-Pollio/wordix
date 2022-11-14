@@ -188,6 +188,70 @@ function primeraPartidaGanada($partidas, $nombre){
 }
 
 
+/**
+ * Retorna el resumen de un jugador
+ * @param array $partida
+ * @param string $nombre
+ * @return array
+ */
+function resumenJugador($partida, $nombre){
+    //array $resumenDeJugador
+    //int $partidasT, $puntajeT, $victorias, $intento1, $intento2, $intento3, $intento4, $intento5; $intento6
+    $partida = cargarPartidas();
+    $n = count($partida);
+    $partidasT = 0;
+    $puntajeT = 0;
+    $victorias = 0;
+    $intento1 = 0;
+    $intento2 = 0;
+    $intento3 = 0;
+    $intento4 = 0;
+    $intento5 = 0;
+    $intento6 = 0;
+    $resumenDeJugador = [];
+    for ($i=0; $i < $n; $i++) { 
+        if($nombre == $partida[$i]["jugador"]){
+            $partidasT = $partidasT + 1;
+            $puntajeT = $puntajeT + $partida[$i]["puntaje"];
+            if ($partida[$i]["puntaje"] > 0) {
+                $victorias = $victorias + 1;
+            }
+            switch ($partida[$i]["intentos"]) {
+                case 1:
+                    $intento1 = $intento1 +1;
+                    break;
+                case 2:
+                    $intento2 = $intento2 + 1;
+                    break;
+                case 3:
+                    $intento3 = $intento3 + 1;
+                    break;    
+                case 4:
+                    $intento4 = $intento4 + 1;
+                    break;
+                case 5:
+                    $intento5 = $intento5 + 1;
+                    break;
+                case 6:
+                    $intento6 = $intento6 + 1;
+                    break;         
+            }
+        }
+    }
+
+
+    $resumenDeJugador["jugador"] = $nombre;
+    $resumenDeJugador["partidas"] = $partidasT;
+    $resumenDeJugador["puntaje"] = $puntajeT;
+    $resumenDeJugador["victorias"] = $victorias;
+    $resumenDeJugador["intento1"] = $intento1;
+    $resumenDeJugador["intento2"] = $intento2;
+    $resumenDeJugador["intento3"] = $intento3;
+    $resumenDeJugador["intento4"] = $intento4;
+    $resumenDeJugador["intento5"] = $intento5;
+    $resumenDeJugador["intento6"] = $intento6;
+    return $resumenDeJugador;
+}  
 
 
 /**
