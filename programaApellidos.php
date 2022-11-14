@@ -7,6 +7,7 @@ include_once("wordix.php");
 
 /* Carrasco, Nadia. 4236. TUDW. nadiacarrasco83.nc@gmail.com . Nadia-Carrasco */
 /* Salgado, Sol. 4266. TUDW. sol.g.salgado@gmail.com. solsalgado */
+/* Pollio, Thiago. 4267. TUDW. thiagopollio@yahoo.com.ar. Thiago-Pollio */
 /* ... COMPLETAR ... */
 
 
@@ -73,6 +74,27 @@ function seleccionarOpcion(){
     return $numOpcion;
 }
 
+
+/**
+ * Solicita al usuario un numero valido entre un rango de valores
+ * @param int $min
+ * @param int $max
+ * @return int
+ */
+
+function solicitarNumeroEntre($min, $max)
+{
+    //int $numero
+    $numero = trim(fgets(STDIN));
+    while (!is_int($numero) && !($numero >= $min && $numero <= $max)) {
+        echo "Debe ingresar un número entre " . $min . " y " . $max . ": ";
+        $numero = trim(fgets(STDIN));
+    }
+    return $numero;
+}
+
+
+
 /**
  * Muestra los datos de partida
  * @param array $coleccionDePartidas
@@ -109,6 +131,66 @@ function datosPartida($coleccionDePartidas){
   }
  }
 
+
+
+/**
+ *  Verifica si una palabra es de 5 letras
+ *  @return string
+ */
+function leerPalabra5Letras()
+{
+    //string $palabra
+    echo "Ingrese una palabra de 5 letras: ";
+    $palabra = trim(fgets(STDIN));
+    $palabra  = strtoupper($palabra);
+
+    while ((strlen($palabra) != 5) || !($palabra)) {
+        echo "Debe ingresar una palabra de 5 letras:";
+        $palabra = strtoupper(trim(fgets(STDIN)));
+    }
+    return $palabra;
+}
+
+/**
+ *  Agrega una palabra a la coleccion de palabras
+ *  @param array $coleccionPalabras
+ *  @param string $palabra
+ */
+
+function agregarPalabra ($coleccionPalabras, $palabra) {
+
+    $llamarFuncion = cargarColeccionPalabras();
+    $n = count($llamarFuncion);
+    $i = 0;
+    $palabraRepetida = false;
+
+    while ($i < $n && $palabraRepetida == false) {
+        if ($palabra == $coleccionPalabras[$i]){
+
+            echo "Palabra ya ingresada. Ingrese una nueva palabra: ";
+            $palabra = trim(fgets(STDIN));
+            $palabra  = strtoupper($palabra);
+            while ((strlen($palabra) != 5) || !($palabra)) {
+                echo "Debe ingresar una palabra de 5 letras:";
+                $palabra = strtoupper(trim(fgets(STDIN)));
+            }
+            $i = 0;
+
+        } else {
+            $i = $i + 1;
+        }
+         if ($i >= $n || $palabraRepetida == true){
+        $llamarFuncion []= $palabra;
+    }
+    }
+    
+    print_r($llamarFuncion);
+ }
+
+
+
+
+
 /**
  * Muestra la primera partida ganada de un jugador
  * @param array $partidas
@@ -138,6 +220,34 @@ function primeraPartidaGanada($partidas, $nombre){
     }
     return ($indice);
 }
+
+
+
+
+/**
+ * Solicita el nombre de un jugador y lo convierte a minusculas
+ * @return string $minusculas
+ */
+function solicitarJugador (){
+    $minusculas = "";
+    $nombreEnMinusculas = false;
+    echo "Ingrese el nombre del jugador: ";
+    $nombreJugador = trim(fgets(STDIN));
+    do { 
+        if (ctype_alpha($nombreJugador)) {
+            $minusculas = strtolower($nombreJugador);
+            echo "$minusculas" ;
+            $nombreEnMinusculas = true;
+        } else {
+            echo "El nombre debe empezar con una letra. Ingrese uno nuevo: ";
+            $nombreJugador = trim(fgets(STDIN));
+        }
+    } while ($nombreEnMinusculas == false  );
+    return ($minusculas);
+}
+
+
+
 
 
 /**************************************/
