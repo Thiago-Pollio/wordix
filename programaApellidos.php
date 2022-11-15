@@ -280,6 +280,60 @@ function solicitarJugador (){
 
 
 
+/**
+ * Define de que manera se ordenara el Array (coleccionPartidas)
+ * @param string $keyPartidasUno
+ * @param string $keyPartidasDos
+ * @return int
+ */
+
+function cmp ($keyPartidasUno, $keyPartidasDos){
+    if ($keyPartidasUno["jugador"]== $keyPartidasDos["jugador"]){
+
+        if ($keyPartidasUno["palabraWordix"] == $keyPartidasDos["palabraWordix"]) {
+        
+            $orden = 0;
+
+        } elseif ($keyPartidasUno["palabraWordix"] < $keyPartidasDos["palabraWordix"]) {
+
+            $orden = -1;
+        
+        } else {
+
+            $orden = 1;
+        } 
+
+    } elseif ($keyPartidasUno["jugador"] < $keyPartidasDos["jugador"]) {
+
+        $orden = -1;
+
+    } else {
+
+        $orden = 1;
+
+    }
+
+    return $orden;
+
+}
+
+/**
+ * Ordena el Array alfabeticamente por jugador y palabra usada en el Array (coleccionPartidas)
+ * @param array $coleccionPartidas
+ */
+
+function mostrarArrayOrdenado ($coleccionPartidas) {
+
+    uasort($coleccionPartidas, 'cmp');
+    
+    print_r($coleccionPartidas);
+
+}
+
+
+
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
