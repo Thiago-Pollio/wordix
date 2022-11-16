@@ -150,7 +150,6 @@ function agregarPalabra ($coleccionPalabras, $palabra) {
  */
 function primeraPartidaGanada($partidas, $nombre){
     //int $indice
-    $partidas = cargarPartidas();
     $n = count($partidas); 
     $i = 0;
     $encontrado = false; 
@@ -181,7 +180,6 @@ function primeraPartidaGanada($partidas, $nombre){
 function resumenJugador($partida, $nombre){
     //array $resumenDeJugador
     //int $partidasT, $puntajeT, $victorias, $intento1, $intento2, $intento3, $intento4, $intento5; $intento6
-    $partida = cargarPartidas();
     $n = count($partida);
     $partidasT = 0;
     $puntajeT = 0;
@@ -247,15 +245,18 @@ function solicitarJugador (){
     $nombreEnMinusculas = false;
     echo "Ingrese Nombre de Jugador: ";
     $nombreJugador = trim(fgets(STDIN));
-    do { 
-        if (ctype_alpha($nombreJugador)) {
-            $minusculas = strtolower($nombreJugador);
-            $nombreEnMinusculas = true;
-        } else {
+    $minusculas = strtolower($nombreJugador);
+    $expresion= "(^([a-z]))";
+    while ($nombreEnMinusculas==false){
+        if ( preg_match($expresion, $minusculas)){
+            $nombreEnMinusculas=true;
+        }else{
             echo "El nombre debe empezar con una letra. Ingrese uno nuevo: ";
             $nombreJugador = trim(fgets(STDIN));
+            $minusculas = strtolower($nombreJugador);
+            $nombreEnMinusculas=false;
         }
-    } while ($nombreEnMinusculas == false  );
+    }
     return ($minusculas);
 }
 
@@ -345,20 +346,21 @@ do {
 
     
     switch ($opcion) {
+        /*Dependiendo de la opción del menú que escoga el usuario, el programa ejecutará diferentes
+        tareas. Se utiliza switch, que corresponde a la estructura de control alternativa (if)*/
         case 1: 
             $nombreUsuario=solicitarJugador();
             echo "Ingrese un Número de Palabra: ";
             $cantPalabras=count($palabras)-1;
             $numPalabra=solicitarNumeroEntre(0, $cantPalabras);
             $palabraElegida= $palabras[$numPalabra];
-            
             $palabraValida=false;
             $n=count($partidas);
             $i=0;
             while($i<$n && $palabraValida==false){
                 if($nombreUsuario==$partidas[$i]["jugador"]&& $palabraElegida==$partidas[$i]["palabraWordix"]){
                     echo "Palabra ya jugada. Debe ingresar otro Número de Palabra: ";
-                    $numPalabra=trim(fgets(STDIN));
+                    $numPalabra=solicitarNumeroEntre(0, $cantPalabras);
                     $palabraElegida= $palabras[$numPalabra];
                     $palabraValida=false;    
                     $i=0;
@@ -368,7 +370,7 @@ do {
             }
             
                 $partida = jugarWordix($palabraElegida, strtolower($nombreUsuario));
-                //agregar variable que almacene los datos
+                //falta funcion para almacenar 
                 $num=seleccionarOpcion();
             break;
             
