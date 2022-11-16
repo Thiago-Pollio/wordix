@@ -387,7 +387,8 @@ do {
 
             break;
         case 6:
-
+            MostrarArrayOrdenado($partidas);
+            $num = seleccionarOpcion();
             break;
         case 7:
             $palabraNueva=leerPalabra5Letras(); 
