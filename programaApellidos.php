@@ -162,16 +162,15 @@ function primeraPartidaGanada($partidas, $nombre){
             $encontrado = false;
             }
         }
-        $i = $i + 1;
+        $i = $i +1;
     }
     if ($encontrado == true) {
-        $indice = $partidas[$i];
+        $indice = $i - 1;
     } else {
         $indice = -1;
     }
     return ($indice);
 }
-
 
 /**
  * Retorna el resumen de un jugador
@@ -381,7 +380,11 @@ do {
             $num= seleccionarOpcion();
             break;
         case 4:
-
+            echo "Ingrese un nombre de usuario: ";
+            $nombreJugador = trim(fgets(STDIN));
+            $primerPartida = primeraPartidaGanada($partidas, $nombreJugador);
+            echo "Gano la partida: ". $primerPartida. "\n";
+            $num = seleccionarOpcion();
             break;
         case 5:
 
