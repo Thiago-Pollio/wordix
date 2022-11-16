@@ -246,12 +246,11 @@ function resumenJugador($partida, $nombre){
 function solicitarJugador (){
     $minusculas = "";
     $nombreEnMinusculas = false;
-    echo "Ingrese el nombre del jugador: ";
+    echo "Ingrese Nombre de Jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     do { 
         if (ctype_alpha($nombreJugador)) {
             $minusculas = strtolower($nombreJugador);
-            echo "$minusculas" ;
             $nombreEnMinusculas = true;
         } else {
             echo "El nombre debe empezar con una letra. Ingrese uno nuevo: ";
@@ -348,16 +347,17 @@ do {
     
     switch ($opcion) {
         case 1: 
-            echo "Ingrese Nombre de Usuario: ";
-            $nombreJugador=trim(fgets(STDIN));
+            $nombreUsuario=solicitarJugador();
             echo "Ingrese un Número de Palabra: ";
-            $numPalabra=trim(fgets(STDIN));
+            $cantPalabras=count($palabras)-1;
+            $numPalabra=solicitarNumeroEntre(0, $cantPalabras);
             $palabraElegida= $palabras[$numPalabra];
+            
             $palabraValida=false;
             $n=count($partidas);
             $i=0;
             while($i<$n && $palabraValida==false){
-                if($nombreJugador==$partidas[$i]["jugador"]&& $palabraElegida==$partidas[$i]["palabraWordix"]){
+                if($nombreUsuario==$partidas[$i]["jugador"]&& $palabraElegida==$partidas[$i]["palabraWordix"]){
                     echo "Palabra ya jugada. Debe ingresar otro Número de Palabra: ";
                     $numPalabra=trim(fgets(STDIN));
                     $palabraElegida= $palabras[$numPalabra];
@@ -368,8 +368,9 @@ do {
                 }
             }
             
-                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-            
+                $partida = jugarWordix($palabraElegida, strtolower($nombreUsuario));
+                //agregar variable que almacene los datos
+                $num=seleccionarOpcion();
             break;
             
         case 2:
