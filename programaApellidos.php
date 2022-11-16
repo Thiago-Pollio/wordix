@@ -303,6 +303,8 @@ function cmp ($keyPartidasUno, $keyPartidasDos){
 
 /**
  * Ordena el Array alfabeticamente por jugador y palabra usada en el Array (coleccionPartidas)
+ * La funcion uasort () ordena el array segun una funcion de comparación definida por el usuario
+ * La funcion print_r () imprime la información de una funcion de manera legible.
  * @param array $coleccionPartidas
  */
 
@@ -405,7 +407,7 @@ do {
             $num = seleccionarOpcion();
             break;
         case 6:
-            MostrarArrayOrdenado($partidas);
+            mostrarArrayOrdenado($partidas);
             $num = seleccionarOpcion();
             break;
         case 7:
