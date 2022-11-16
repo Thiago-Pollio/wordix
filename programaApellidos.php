@@ -162,16 +162,15 @@ function primeraPartidaGanada($partidas, $nombre){
             $encontrado = false;
             }
         }
-        $i = $i + 1;
+        $i = $i +1;
     }
     if ($encontrado == true) {
-        $indice = $partidas[$i];
+        $indice = $i - 1;
     } else {
         $indice = -1;
     }
     return ($indice);
 }
-
 
 /**
  * Retorna el resumen de un jugador
@@ -382,13 +381,30 @@ do {
             $num= seleccionarOpcion();
             break;
         case 4:
-
+            echo "Ingrese un nombre de usuario: ";
+            $nombreJugador = trim(fgets(STDIN));
+            $primerPartida = primeraPartidaGanada($partidas, $nombreJugador);
+            echo "Gano la partida: ". $primerPartida. "\n";
+            $num = seleccionarOpcion();
             break;
         case 5:
-
+             echo "Jugador: ";
+            $nombreJugador = trim(fgets(STDIN));
+            $resumen = resumenJugador($partidas, $nombreJugador);
+            echo "Partidas: ". $resumen["partidas"]. "\n";
+            echo "Puntaje: ". $resumen["puntaje"]. "\n";
+            echo "Victorias: ". $resumen["victorias"]. "\n";
+            echo "Intento 1: ". $resumen["intento1"]. "\n";
+            echo "Intento 2: ". $resumen["intento2"]. "\n";
+            echo "Intento 3: ". $resumen["intento3"]. "\n";
+            echo "Intento 4: ". $resumen["intento4"]. "\n";
+            echo "Intento 5: ". $resumen["intento5"]. "\n";
+            echo "Intento 6: ". $resumen["intento6"]. "\n";
+            $num = seleccionarOpcion();
             break;
         case 6:
-
+            MostrarArrayOrdenado($partidas);
+            $num = seleccionarOpcion();
             break;
         case 7:
             $palabraNueva=leerPalabra5Letras(); 
