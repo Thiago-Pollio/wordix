@@ -387,7 +387,19 @@ do {
             $num = seleccionarOpcion();
             break;
         case 5:
-
+             echo "Jugador: ";
+            $nombreJugador = trim(fgets(STDIN));
+            $resumen = resumenJugador($partidas, $nombreJugador);
+            echo "Partidas: ". $resumen["partidas"]. "\n";
+            echo "Puntaje: ". $resumen["puntaje"]. "\n";
+            echo "Victorias: ". $resumen["victorias"]. "\n";
+            echo "Intento 1: ". $resumen["intento1"]. "\n";
+            echo "Intento 2: ". $resumen["intento2"]. "\n";
+            echo "Intento 3: ". $resumen["intento3"]. "\n";
+            echo "Intento 4: ". $resumen["intento4"]. "\n";
+            echo "Intento 5: ". $resumen["intento5"]. "\n";
+            echo "Intento 6: ". $resumen["intento6"]. "\n";
+            $num = seleccionarOpcion();
             break;
         case 6:
             MostrarArrayOrdenado($partidas);
