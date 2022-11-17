@@ -377,7 +377,14 @@ do {
             break;
             
         case 2:
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            $nombreUsuario=solicitarJugador();
+            $palabraAleatoria = $palabras[array_rand($palabras)];
+            $n=count($partidas);
+            $i=0;
+                $partida = jugarWordix($palabraAleatoria, strtolower($nombreUsuario));
+                //falta funcion para almacenar 
+                $num=seleccionarOpcion();
+
 
             break;
         case 3: 
