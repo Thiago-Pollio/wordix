@@ -349,12 +349,6 @@ $num= seleccionarOpcion();
 
 //Proceso:
 
-
-//$partida = jugarWordix("MELON", strtolower("MaJo"));
-//print_r($partida);
-//imprimirResultado($partida);
-
-
 do {
     
     $opcion = $num;
