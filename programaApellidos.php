@@ -76,6 +76,7 @@ function seleccionarOpcion(){
 /**
  * Muestra los datos de partida
  * @param array $coleccionDePartidas
+ * @param int $numero
  */
 function datosPartida($coleccionDePartidas, $numero){
      $coleccionDePartidas = cargarPartidas();
@@ -123,9 +124,9 @@ function agregarPalabra ($coleccionPalabras, $palabra) {
     while ($i < $n && $palabraRepetida == false) {
         if ($palabra == $coleccionPalabras[$i]){
 
-            echo "Palabra ya ingresada. Ingrese una nueva palabra: ";
-            $palabra = trim(fgets(STDIN));
+            echo "Palabra ya ingresada. ";
             $palabra=leerPalabra5Letras($palabra);
+            $palabraRepetida=false;
             $i=0;
         }else{
             $i=$i+1;
@@ -324,10 +325,24 @@ function mostrarArrayOrdenado ($coleccionPartidas) {
 
 //Declaración de variables:
 
+/**
+ * STRING: $nombreUsuario, $palabraElegida, $palabraAleatoria, $palabraNueva
+ * INT: $cantPalabras, $numPalabra, $n, $i, $num, $numeroPartida
+ * BOOLEAN: $palabraValida, $existe
+ * FLOAT $porcentje
+ */
 
 //Inicialización de variables:
 
-
+$nombreUsuario="";
+$palabraElegida="";
+$palabraNueva="";
+$numPalabra=0;
+$cantPalabras=0; 
+$n=0; 
+$palabraAleatoria="";
+$numeroPartida=0;
+$porcentaje=0;
 $partidas=cargarPartidas();
 $palabras=cargarColeccionPalabras();
 $num= seleccionarOpcion();
@@ -370,34 +385,31 @@ do {
             }
             
                 $partida = jugarWordix($palabraElegida, strtolower($nombreUsuario));
-                //falta funcion para almacenar 
+                array_push($partidas, $partida);
                 $num=seleccionarOpcion();
             break;
             
         case 2:
             $nombreUsuario=solicitarJugador();
             $palabraAleatoria = $palabras[array_rand($palabras)];
-            $n=count($partidas);
-            $i=0;
-                $partida = jugarWordix($palabraAleatoria, strtolower($nombreUsuario));
-                //falta funcion para almacenar 
-                $num=seleccionarOpcion();
+            $partida = jugarWordix($palabraAleatoria, strtolower($nombreUsuario));
+            array_push($partidas, $partida);
+            $num=seleccionarOpcion();
 
 
             break;
         case 3: 
-            echo "Ingrese un número: ";
-            $numero = trim(fgets(STDIN));
-            datosPartida($partidas, $numero);
+            echo "Ingrese un Número de Partida: ";
+            $numeroPartida = trim(fgets(STDIN));
+            datosPartida($partidas, $numeroPartida);
             $num= seleccionarOpcion();
             break;
         case 4:
-            echo "Ingrese un nombre de usuario: ";
-            $nombreJugador = trim(fgets(STDIN));
-            $primerPartida = primeraPartidaGanada($partidas, $nombreJugador);
-            $n = count($palabras);
+            $nombreUsuario=solicitarJugador();
+            $primerPartida = primeraPartidaGanada($partidas, $nombreUsuario);
+            $cantPalabras = count($palabras);
             $existe = false;
-            for ($i=0; $i < $n; $i++) { 
+            for ($i=0; $i < $cantPalabras; $i++) { 
                 if ($primerPartida > -1){
                     $existe = true;
                 } else {
@@ -407,11 +419,11 @@ do {
          if ($existe == true){  
             if ($primerPartida > 0){
                 $datos = datosPartida($partidas, $primerPartida). "\n";
-            echo "". $datos;
+            echo $datos;
             } elseif ($primerPartida <= 0) {
                 echo "El jugador ". $nombreJugador. " no ganó ninguna partida";
                 $datos = datosPartida($partidas, $primerPartida). "\n";
-                echo "". $datos;
+                echo  $datos;
             } 
          } else {
             echo "El jugador no existe.". "\n";
@@ -419,12 +431,14 @@ do {
             $num = seleccionarOpcion();
             break;
         case 5:
-             echo "Jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
-            $resumen = resumenJugador($partidas, $nombreJugador);
+            $nombreUsuario=solicitarJugador();
+            echo "Jugador " . $nombreUsuario ."\n";
+            $resumen = resumenJugador($partidas, $nombreUsuario);
             echo "Partidas: ". $resumen["partidas"]. "\n";
-            echo "Puntaje: ". $resumen["puntaje"]. "\n";
+            echo "Puntaje Total: ". $resumen["puntaje"]. "\n";
             echo "Victorias: ". $resumen["victorias"]. "\n";
+            $porcentaje=($resumen["victorias"]*100)/ $resumen["partidas"];
+            echo "Porcentaje Victorias: " . $porcentaje . "%"."\n";
             echo "Intento 1: ". $resumen["intento1"]. "\n";
             echo "Intento 2: ". $resumen["intento2"]. "\n";
             echo "Intento 3: ". $resumen["intento3"]. "\n";
@@ -440,6 +454,7 @@ do {
         case 7:
             $palabraNueva=leerPalabra5Letras(); 
             agregarPalabra($palabras, $palabraNueva);
+            array_push($palabras, $palabraNueva);
             $num= seleccionarOpcion();
             break;
     }
