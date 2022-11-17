@@ -147,6 +147,7 @@ function agregarPalabra ($coleccionPalabras, $palabra) {
  */
 function primeraPartidaGanada($partidas, $nombre){
     //int $indice
+    $partidas = cargarPartidas();
     $n = count($partidas); 
     $i = 0;
     $encontrado = false; 
@@ -394,6 +395,16 @@ do {
             echo "Ingrese un nombre de usuario: ";
             $nombreJugador = trim(fgets(STDIN));
             $primerPartida = primeraPartidaGanada($partidas, $nombreJugador);
+            $n = count($palabras);
+            $existe = false;
+            for ($i=0; $i < $n; $i++) { 
+                if ($primerPartida > -1){
+                    $existe = true;
+                } else {
+                    $existe = false;
+                }
+            }
+         if ($existe == true){  
             if ($primerPartida > 0){
                 $datos = datosPartida($partidas, $primerPartida). "\n";
             echo "". $datos;
@@ -401,9 +412,10 @@ do {
                 echo "El jugador ". $nombreJugador. " no ganó ninguna partida";
                 $datos = datosPartida($partidas, $primerPartida). "\n";
                 echo "". $datos;
-            } elseif ($nombreJugador != $primerPartida) {
-                echo "No existe el jugador". "\n";
-            }
+            } 
+         } else {
+            echo "El jugador no existe.". "\n";
+         }
             $num = seleccionarOpcion();
             break;
         case 5:
