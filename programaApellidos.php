@@ -77,14 +77,11 @@ function seleccionarOpcion(){
  * Muestra los datos de partida
  * @param array $coleccionDePartidas
  */
-function datosPartida($coleccionDePartidas){
-    //int $numero
+function datosPartida($coleccionDePartidas, $numero){
      $coleccionDePartidas = cargarPartidas();
      $n = count($coleccionDePartidas);
      $i = 0;
      $num = false;
-     echo "Ingrese un número: ";
-     $numero = trim(fgets(STDIN));
      while ($i < $n && $num == false) {
          if ($numero < $n) {
              $num = true;
@@ -97,7 +94,7 @@ function datosPartida($coleccionDePartidas){
          echo "Partida WORDIX ". $numero.": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
          echo "Jugador: ". $coleccionDePartidas[$numero]["jugador"]. "\n";
          echo "Puntaje: ". $coleccionDePartidas[$numero]["puntaje"]. "\n";
-         if ($coleccionDePartidas[$numero]["puntaje"] == 0) {
+         if ($coleccionDePartidas[$numero]["puntaje"] <= 0) {
              echo "Intento: No adivinó la palabra." . " \n";
          } elseif ($coleccionDePartidas[$numero]["puntaje"] > 0) {
              echo "Intento: Adivinó la palabra en ". $coleccionDePartidas[$numero]["intentos"]." intentos" . " \n";
@@ -388,14 +385,25 @@ do {
 
             break;
         case 3: 
-            datosPartida($partidas);
+            echo "Ingrese un número: ";
+            $numero = trim(fgets(STDIN));
+            datosPartida($partidas, $numero);
             $num= seleccionarOpcion();
             break;
         case 4:
             echo "Ingrese un nombre de usuario: ";
             $nombreJugador = trim(fgets(STDIN));
             $primerPartida = primeraPartidaGanada($partidas, $nombreJugador);
-            echo "Gano la partida: ". $primerPartida. "\n";
+            if ($primerPartida > 0){
+                $datos = datosPartida($partidas, $primerPartida). "\n";
+            echo "". $datos;
+            } elseif ($primerPartida <= 0) {
+                echo "El jugador ". $nombreJugador. " no ganó ninguna partida";
+                $datos = datosPartida($partidas, $primerPartida). "\n";
+                echo "". $datos;
+            } elseif ($nombreJugador != $primerPartida) {
+                echo "No existe el jugador". "\n";
+            }
             $num = seleccionarOpcion();
             break;
         case 5:
