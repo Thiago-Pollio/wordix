@@ -80,18 +80,19 @@ function seleccionarOpcion(){
  * @param int $numero
  */
 function datosPartida($coleccionDePartidas, $numero){
+     $coleccionDePartidas = cargarPartidas();
      $n = count($coleccionDePartidas);
-     $i = 0;
-     $num = false;
-     while ($i < $n && $num == false) {
+     $i = -1;
+     $numExiste = false;
+     while ($i < $n && $numExiste == false) {
          if ($numero < $n) {
-             $num = true;
+             $numExiste = true;
          } else {
-             $num = false;
+             $numExiste = false;
          }
          $i = $i + 1;
      
-     if ($num) {
+     if ($numExiste == true) {
          echo "Partida WORDIX ". $numero.": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
          echo "Jugador: ". $coleccionDePartidas[$numero]["jugador"]. "\n";
          echo "Puntaje: ". $coleccionDePartidas[$numero]["puntaje"]. "\n";
@@ -106,6 +107,7 @@ function datosPartida($coleccionDePartidas, $numero){
      } 
   }
  }
+
 
 
 /**
