@@ -427,19 +427,26 @@ do {
             break;
         case 5:
             $nombreUsuario=solicitarJugador();
-            echo "Jugador " . $nombreUsuario ."\n";
             $resumen = resumenJugador($partidas, $nombreUsuario);
-            echo "Partidas: ". $resumen["partidas"]. "\n";
-            echo "Puntaje Total: ". $resumen["puntaje"]. "\n";
-            echo "Victorias: ". $resumen["victorias"]. "\n";
-            $porcentaje=($resumen["victorias"]*100)/ $resumen["partidas"];
-            echo "Porcentaje Victorias: " . $porcentaje . "%"."\n";
-            echo "Intento 1: ". $resumen["intento1"]. "\n";
-            echo "Intento 2: ". $resumen["intento2"]. "\n";
-            echo "Intento 3: ". $resumen["intento3"]. "\n";
-            echo "Intento 4: ". $resumen["intento4"]. "\n";
-            echo "Intento 5: ". $resumen["intento5"]. "\n";
-            echo "Intento 6: ". $resumen["intento6"]. "\n";
+            if ($resumen["partidas"] > 0 ){
+                $porcentaje=($resumen["victorias"]*100)/ $resumen["partidas"];
+                echo "Jugador " . $nombreUsuario ."\n";
+                $resumen = resumenJugador($partidas, $nombreUsuario);
+                echo "Partidas: ". $resumen["partidas"]. "\n";
+                echo "Puntaje Total: ". $resumen["puntaje"]. "\n";
+                echo "Victorias: ". $resumen["victorias"]. "\n";
+                 echo "Porcentaje Victorias: " . $porcentaje . "%"."\n";
+                 echo "Intento 1: ". $resumen["intento1"]. "\n";
+                echo "Intento 2: ". $resumen["intento2"]. "\n";
+                echo "Intento 3: ". $resumen["intento3"]. "\n";
+                echo "Intento 4: ". $resumen["intento4"]. "\n";
+                echo "Intento 5: ". $resumen["intento5"]. "\n";
+                echo "Intento 6: ". $resumen["intento6"]. "\n";
+                
+            } else {
+                echo "El jugador no jugó ninguna partida.". "\n";
+            }
+           
             $num = seleccionarOpcion();
             break;
         case 6:
