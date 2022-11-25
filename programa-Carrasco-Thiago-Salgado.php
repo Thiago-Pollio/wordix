@@ -79,9 +79,9 @@ function seleccionarOpcion(){
  * @param array $coleccionDePartidas
  * @param int $numero
  */
-function datosPartida($coleccionDePartidas, $numero){
-     $coleccionDePartidas = cargarPartidas();
-     $n = count($coleccionDePartidas);
+function datosPartida($coleccion, $numero){
+     
+     $n = count($coleccion);
      $i = -1;
      $numExiste = false;
      while ($i < $n && $numExiste == false) {
@@ -93,13 +93,13 @@ function datosPartida($coleccionDePartidas, $numero){
          $i = $i + 1;
      
      if ($numExiste == true) {
-         echo "Partida WORDIX ". $numero.": palabra ". $coleccionDePartidas[$numero]["palabraWordix"]. "\n";
-         echo "Jugador: ". $coleccionDePartidas[$numero]["jugador"]. "\n";
-         echo "Puntaje: ". $coleccionDePartidas[$numero]["puntaje"]. "\n";
-         if ($coleccionDePartidas[$numero]["puntaje"] <= 0) {
+         echo "Partida WORDIX ". $numero.": palabra ". $coleccion[$numero]["palabraWordix"]. "\n";
+         echo "Jugador: ". $coleccion[$numero]["jugador"]. "\n";
+         echo "Puntaje: ". $coleccion[$numero]["puntaje"]. "\n";
+         if ($coleccion[$numero]["puntaje"] <= 0) {
              echo "Intento: No adivinó la palabra." . " \n";
-         } elseif ($coleccionDePartidas[$numero]["puntaje"] > 0) {
-             echo "Intento: Adivinó la palabra en ". $coleccionDePartidas[$numero]["intentos"]." intentos" . " \n";
+         } elseif ($coleccion[$numero]["puntaje"] > 0) {
+             echo "Intento: Adivinó la palabra en ". $coleccion[$numero]["intentos"]." intentos" . " \n";
          }
      } else {
          echo "Ingrese un numero válido: ";
